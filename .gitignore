@@ -6,3 +6,6 @@
 *.png
 *.pdf
 *.jpg
+
+# Compiled python files
+*.pyc
