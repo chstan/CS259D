@@ -1,0 +1,8 @@
+# OS X being annoying 
+.DS_Store
+
+
+# resources
+*.png
+*.pdf
+*.jpg
