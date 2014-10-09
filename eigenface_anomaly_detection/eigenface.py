@@ -32,20 +32,42 @@ def buildCooccurrence(seq, d, dictionary):
             x = dictionary[seq[idx]]
             y = dictionary[seq[idx_max]]
             m[x, y] += 1
-
+    #print "done"
     return m
 
+def meanMatrices1(matrices):
+    return np.mean(matrices, axis=0)
+
+def meanMatrices2(matrices):
+    return np.mean(matrices)
+    #TODO
+
+def normalizeMatrices(matrices):
+    mean = meanMatrices1(matrices)
+    print mean
+    return [matrix - mean for matrix in matrices]
 
 if __name__ == "__main__":
     num_users = 50
+    train_length = 5000
+    test_length = 10000
     sequence_length = 100
+    num_train_seq = train_length/sequence_length
+    window_len = 6
 
     users_and_files = userFilesMap(num_users)
 
     command_dict = buildCommandDictionary(users_and_files.values())
 
     # still need to split the data into training sets and test sets
-    users_and_files = {u: splitSequence(users_and_files[u], sequence_length) for \
+    users_and_files = {u: list(splitSequence(users_and_files[u], sequence_length)) for \
                        u in users_and_files }
 
-    print buildCooccurrence(list(users_and_files['User1'])[0], 3, command_dict)
+    # syphon off the training data and concatenate in one list
+    train_seq = []
+    for user in users_and_files:
+        train_seq.extend(users_and_files[user][:num_train_seq])
+
+    train_cooccurs = [buildCooccurrence(seq, window_len, command_dict) for seq in train_seq]
+    #norm_train_cooccurs = normalizeMatrices(train_cooccurs)
+    #print buildCooccurrence(users_and_files['User1'][0], 3, command_dict)
