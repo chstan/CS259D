@@ -63,19 +63,15 @@ def buildCooccurrence(seq, d, dictionary):
     return m * (t0/t)
 
 def calculateCovariance(vecs):
-    n = vecs[0].shape[0]
-    covar = np.zeros((n, n))
-    for i in range(50): # FOR MY FUCKING SANITY really len(vecs)
-        print i
-        covar += np.outer(vecs[i],vecs[i])
-    return covar
+    vec_mat = np.matrix(vecs)
+    return vec_mat.T * vec_mat
 
 if __name__ == "__main__":
     num_users = 50
     train_length = 5000
     test_length = 10000
     sequence_length = 100
-    keep_most_common = 80  #this seems to be minimal to OH SHIT THIS IS BAD
+    keep_most_common = 140 #this seems to be minimal to
                            #prevent losing "too much" info
     keep_random = 0
     num_train_seq = train_length/sequence_length
@@ -102,3 +98,4 @@ if __name__ == "__main__":
     norm_vec_cooccurs = [n.ravel() for n in norm_train_cooccurs]
 
     P = calculateCovariance(norm_vec_cooccurs)
+    print P.shape
