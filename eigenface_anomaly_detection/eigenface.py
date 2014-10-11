@@ -62,18 +62,6 @@ def buildCooccurrence(seq, d, dictionary):
         print "OH GOD"
     return m * (t0/t)
 
-def meanMatrices1(matrices):
-    return np.mean(matrices, axis=0)
-
-def meanMatrices2(matrices):
-    return np.mean(matrices)
-    #TODO
-
-def normalizeMatrices(matrices):
-    mean = meanMatrices1(matrices)
-    print mean
-    return [matrix - mean for matrix in matrices]
-
 if __name__ == "__main__":
     num_users = 50
     train_length = 5000
@@ -100,5 +88,6 @@ if __name__ == "__main__":
         train_seq.extend(users_and_files[user][:num_train_seq])
 
     train_cooccurs = [buildCooccurrence(seq, window_len, command_dict) for seq in train_seq]
-    #norm_train_cooccurs = normalizeMatrices(train_cooccurs)
-    #print buildCooccurrence(users_and_files['User1'][0], 3, command_dict)
+    mean = np.mean(train_cooccurs, axis=0)
+
+    normalized_train_cooccurs = [t - mean for t in train_cooccurs]
