@@ -18,6 +18,8 @@ def buildSmallCommandDictionary(command_lists, n_most_common, n_random):
         most common found commands along with an additional n_random randomly
         selected ones."""
     c = Counter(chain(*command_lists))
+    print "cd"
+    print c["cd"]
     filtered_commands = [k for k, v in c.most_common(n_most_common)]
     rest = list(set(c.keys()).difference(set(filtered_commands)))
     random.shuffle(rest)
@@ -98,4 +100,6 @@ if __name__ == "__main__":
     norm_vec_cooccurs = [n.ravel() for n in norm_train_cooccurs]
 
     P = calculateCovariance(norm_vec_cooccurs)
-    print P.shape
+    print "Calculating eigenvectors"
+    eig_vals, eig_vecs = np.linalg.eig(P)
+    print eig_vals
