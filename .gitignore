@@ -9,3 +9,6 @@
 
 # Compiled python files
 *.pyc
+
+# Lyx backup files
+*.lyx~
