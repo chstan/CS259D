@@ -1,0 +1,103 @@
+Here are our results and solutions to problem 2 from the problem set:
+
+A: The number of sample sequences in the "domain dataset" was 2500, 50 sequences
+   of length 100 for each of 50 users. In total there were 856 commands in the
+   data, but we did a dimensionaltiy reduction described in the addendum that
+   reduced this to 200, which was about as many as our poor computer could
+   handle given that we couldn't find a fast enough NIPALS implementation.
+
+   We played around with a window size of between 4 and 16, but a smallish
+   window seemed to do fairly well, so we sticked with the window size used
+   in the paper: 6.
+
+   The rm-ls (in that order) co-occurrences for each of the first two users
+   for each of their first five sequences were (see addendum for qualification)
+
+       Pre mean subtraction:
+           User 1: 0 1 3 1 1
+           User 2: 1 0 0 0 0
+
+B: We used the "standard" mean subtraction, as it is better motivated in the
+   interpretation of the problem as using PCA for dimensionality reduction,
+   it is easily implemented with standard library features, and it is used
+   by the authors in a second paper where they apply this technical in medical
+   data science.
+
+   The co-occurrences for rm-ls for the previously chosen sequences:
+
+        Post mean subtraction:
+           User 1: -0.772 0.228 2.228 0.228 0.228
+           User 2: 0.228 -0.772 -0.772 -0.772 -0.772
+
+D: The plot of the contribution is available as eigenvalue_contribution.pdf
+   which shows the cumulative contribution for the first 200 eigenvalues. In
+   practice, it is unnecessary to use this many, as the first 50 provide
+   about 93% contribution to the total variance.
+
+E: The feature vectors are reported as rows in User1FV.csv and User2FV.csv as
+   requested. Please note that these might be different for reasons reported
+   in the addendum.
+
+F: We used the layered network model. For small cycles it is not that much more
+   computationally intensive to compute, and using graphs with 30 edges and
+   choosing all the 3 cycles it took about 1/20 sec for each sequence, including
+   projecting onto the eigen co-occurrence matrices. Becuase we used 50 eigen
+   matrices, our networks have 50 layers.
+
+G: Results for all users for all test sequences are available in rates/.... We
+   classified in a similar manner to the paper, choosing a parameter beta per
+   user so that we achieved 90% true positive results on the training data, and
+   looked at the holistic tpr,tnr,fpr,fnr and the per user results as well for
+   all of the data (all 50 users for training and testing). The results for 100
+   different cuts (beta_user - 50 + i for 0 <= i < 100) are recorded in rates/....
+   Files with the name 21_{i}.txt are the predictions for user 21 with the
+   particular choice of the parameter i (used to tune the cut). The holistic
+   tpr,tnr,fpr,fnr (in that order) are provided as tuples in overall_{i}.txt.
+   Finally, per user rates are available in rates_{i}.txt. Prediction vectors
+   for each user are available in pred_{i}.txt, where each row is the set of
+   predictions for one user. Finally, a ROC curve is provided in the form of
+   ROC.pdf, which plots the false positive vs true positive rate for
+   different choices of the parameter i.
+
+H: A reasonable choice for the parameter i seems to be 40, so please
+   look in the corresponding files described in G for the holistic results,
+   per user results (excluduing 21 of course), and the predictions vector for
+   user 21. We choose this value because it was near the corner in the ROC curve
+   provided. If this algorithm were used in conjunction with another, we would
+   instead pick a smaller i, so as to let through more of the legimate users
+   (and more of the masqueraders). The holistic (full dataset) true positive
+   rate for this choice of i was 72.3%, while the false positive rate was 12.8%.
+
+   A more conservative choice would have been i = 50, which gives a true
+   positive rate of 60.4% and a false positive rate of 6.8%.
+
+Addendum: Because we couldn't find a reasonably fast NIPALS implementation and
+          did not want to write thousands of lines of C code to accomplish
+          this for ourselves, we had to use a dimensionaltiy reduction technique
+          before applying the PCA. We did this by using the 200 most used terms
+          in all of the sequences. In order to make up for the fact that some
+          sequences "suffered" more than others as a result, we normalized the
+          resultant co-occurrence matrices so that they all had the same l1 norm
+          as if no terms had been ignored. This is also the only reasonable way
+          to make sense of the mean subtraction when we are doing this reduction.
+
+          Other than this, we were able to more or less follow the description
+          of the algorithm put forward in the paper, and make a few experiments
+          with parameter choices.
+
+          One area that we encountered slight difficulty with was how to
+          evaluate test data once network similarity scores had been computed.
+          It seemed like from the paper they were using the test data in order
+          to choose the cut value. This seemed to be a bit unfair to us, though
+          perhaps we are misinterpretting their method. We chose cutoffs based
+          on the training data results, but had to lower them systematically
+          because the testing data has almost universally lower scores than the
+          training data, regardless of whether the sequence was legitimate.
+
+          One way around this that we looked into was using fraction of cycles
+          in common between the networks, though this introduces a slight
+          assymetry sim(A,B) != sim(B,A), but in practice this might work
+          slightly better. Yet another similarity we looked into was the number
+          of cycles in the graph intersection over the total cycles in either.
+          This restores sim(A,B) = sim(B,A), but in practice didn't really
+          change the results, so we stuck with the method in the paper.

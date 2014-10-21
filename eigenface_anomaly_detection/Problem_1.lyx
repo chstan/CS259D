@@ -107,9 +107,9 @@ How was the botnet mitigated or stopped?
 \end_layout
 
 \begin_layout Standard
-In early 2007 a new botnet appeared using largely defunct P2P protocol called
- Overnet, which uses the Kademlia DHT, in order to communicate between bots
- and to distribute commands.
+In early 2007 a new botnet appeared using a largely defunct P2P protocol
+ called Overnet, which uses the Kademlia DHT, in order to communicate between
+ bots and to distribute commands.
  Despite a number of agressive attacks made and a fair amount of visibility
  in the security communities and in the public eye, Trojan.Peacomm grew to
  a size of at least 
@@ -125,16 +125,18 @@ In early 2007 a new botnet appeared using largely defunct P2P protocol called
 .
  The network was reported in mainstream media as being traceable to Russian
  organized crime, which is consistent with a possible later sale of parts
- of the botnet, and use for distributed denial of service attacks.
+ of the botnet, and use for distributed denial of service attacks as well
+ as spam compaigns which helped to infect additional bots through linkbait
+ style social engineering tactics.
+ 
 \end_layout
 
 \begin_layout Standard
 Interestingly, one of the functions of the network was to agressively defend
  against the efforts of academic and commercial researchers, using its ability
  to laucnh DDoS attacks in order to levy retribution against networks launching
- probes, and to attack the networks of those who published papers on the
- network.
- 
+ probes, and to attack the networks of those who published papers describing
+ and analyzing the botnet.
 \end_layout
 
 \begin_layout Standard
