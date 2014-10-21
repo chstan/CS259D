@@ -1,0 +1,1020 @@
+12, 41, 3, 4, 18
+39, 3, 12, 4, 41
+39, 41, 5, 30, 3
+39, 41, 5, 12, 3
+39, 5, 4, 2, 41
+12, 3, 41, 39, 4
+27, 30, 12, 2, 25
+real
+real
+41, 12, 5, 3, 4
+41, 5, 12, 3, 27
+41, 12, 5, 3, 39
+41, 30, 5, 12, 27
+41, 5, 39, 30, 12
+41, 39, 5, 12, 30
+39, 21, 2, 26, 31
+27, 5, 30, 41, 39
+39, 12, 41, 3, 21
+41, 27, 30, 12, 46
+5, 41, 12, 30, 3
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+41, 3, 12, 46, 33
+12, 3, 41, 18, 4
+real
+12, 3, 41, 46, 42
+real
+real
+real
+real
+real
+real
+39, 26, 4, 17, 48
+39, 4, 56, 2, 32
+real
+real
+real
+real
+real
+46, 39, 5, 38, 4
+39, 2, 4, 48, 37
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+8, 7, 32, 34, 37
+real
+real
+real
+8, 34, 37, 32, 27
+real
+55, 7, 32, 37, 13
+real
+real
+real
+real
+real
+real
+real
+real
+19, 2, 49, 5, 18
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+12, 3, 11, 5, 18
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+13, 15, 7, 8, 10
+real
+13, 15, 7, 51, 57
+13, 7, 15, 29, 8
+real
+57, 13, 15, 7, 48
+real
+real
+13, 10, 15, 7, 55
+10, 15, 13, 25, 50
+13, 8, 15, 7, 29
+13, 15, 7, 29, 8
+real
+54, 7, 15, 8, 10
+real
+real
+real
+29, 15, 7, 48, 13
+54, 15, 8, 7, 29
+real
+39, 4, 27, 2, 5
+2, 37, 26, 27, 50
+2, 37, 46, 48, 26
+39, 46, 2, 5, 50
+46, 39, 50, 2, 26
+27, 16, 46, 26, 31
+real
+real
+46, 2, 16, 37, 27
+real
+5, 16, 19, 46, 30
+5, 46, 16, 50, 39
+5, 16, 46, 30, 39
+real
+46, 5, 30, 16, 39
+real
+real
+real
+27, 16, 46, 30, 47
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+7, 18, 53, 26, 29
+real
+real
+7, 26, 8, 54, 18
+real
+46, 54, 20, 50, 18
+real
+real
+real
+real
+real
+5, 16, 22, 33, 30
+real
+real
+27, 18, 4, 53, 26
+real
+27, 18, 2, 4, 31
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+56, 11, 20, 7, 12
+11, 20, 12, 8, 56
+11, 20, 56, 55, 7
+12, 3, 37, 5, 2
+30, 12, 33, 5, 41
+12, 41, 30, 5, 39
+30, 12, 41, 3, 20
+12, 3, 20, 21, 56
+12, 21, 3, 20, 54
+54, 12, 50, 46, 21
+12, 20, 3, 37, 56
+real
+12, 54, 20, 3, 37
+12, 41, 54, 21, 20
+12, 20, 3, 54, 57
+12, 20, 7, 54, 50
+54, 7, 12, 20, 56
+12, 7, 20, 3, 54
+12, 20, 7, 56, 8
+real
+real
+real
+real
+real
+real
+real
+10, 21, 25, 42, 50
+10, 21, 13, 26, 25
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+28, 24, 17, 44, 2
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+5, 46, 39, 26, 27
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+26, 29, 54, 50, 8
+real
+real
+real
+real
+26, 29, 7, 50, 25
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+26, 29, 8, 39, 7
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+25, 2, 31, 48, 37
+real
+42, 31, 25, 26, 29
+real
+real
+21, 26, 42, 13, 7
+13, 37, 29, 26, 7
+real
+25, 27, 37, 31, 2
+real
+27, 31, 4, 30, 47
+18, 42, 31, 29, 27
+5, 4, 31, 26, 2
+37, 27, 4, 31, 3
+26, 27, 54, 7, 48
+27, 37, 26, 42, 21
+16, 46, 27, 4, 2
+27, 4, 31, 37, 18
+4, 37, 26, 2, 34
+real
+39, 50, 21, 26, 32
+real
+55, 13, 32, 39, 56
+4, 13, 32, 55, 34
+26, 4, 3, 37, 11
+5, 37, 32, 2, 21
+3, 55, 32, 7, 34
+real
+51, 8, 32, 7, 13
+real
+21, 32, 37, 57, 25
+21, 32, 29, 4, 26
+21, 32, 3, 39, 55
+real
+21, 26, 32, 50, 39
+21, 3, 12, 56, 30
+21, 5, 30, 50, 32
+real
+38, 39, 2, 5, 50
+real
+real
+real
+real
+5, 33, 40, 30, 41
+real
+real
+real
+41, 5, 33, 46, 30
+real
+real
+real
+real
+real
+5, 41, 33, 30, 39
+real
+real
+5, 33, 30, 40, 41
+real
+real
+7, 34, 29, 13, 8
+real
+7, 13, 32, 34, 39
+13, 7, 34, 29, 26
+7, 34, 13, 8, 55
+7, 29, 34, 39, 32
+7, 13, 34, 29, 57
+57, 26, 56, 18, 7
+8, 54, 7, 53, 26
+7, 8, 34, 53, 29
+7, 4, 34, 3, 53
+7, 8, 56, 34, 53
+11, 7, 53, 56, 18
+real
+7, 53, 8, 34, 56
+7, 34, 3, 13, 8
+7, 13, 55, 32, 56
+8, 53, 34, 7, 50
+7, 34, 29, 8, 13
+8, 7, 34, 11, 4
+10, 21, 48, 26, 55
+55, 13, 32, 21, 50
+48, 26, 3, 39, 35
+32, 13, 50, 21, 8
+39, 4, 26, 3, 48
+real
+54, 35, 39, 46, 26
+5, 21, 27, 35, 3
+39, 46, 26, 27, 4
+3, 39, 34, 4, 8
+26, 21, 32, 37, 50
+21, 27, 35, 3, 18
+39, 35, 2, 44, 26
+real
+26, 35, 39, 4, 38
+real
+real
+real
+3, 26, 2, 18, 48
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+21, 10, 25, 37, 26
+29, 10, 54, 50, 13
+29, 50, 17, 37, 26
+26, 29, 17, 37, 50
+29, 50, 26, 10, 17
+26, 17, 29, 21, 37
+50, 54, 17, 26, 10
+10, 29, 17, 50, 13
+17, 29, 37, 26, 50
+17, 37, 50, 29, 2
+real
+50, 37, 29, 26, 2
+26, 37, 29, 25, 2
+25, 26, 50, 2, 37
+17, 10, 28, 13, 29
+real
+real
+17, 29, 26, 37, 48
+17, 37, 25, 13, 29
+29, 37, 25, 50, 26
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+42, 40, 12, 31, 54
+real
+42, 40, 54, 31, 12
+42, 12, 54, 40, 31
+real
+42, 40, 12, 41, 5
+42, 40, 12, 54, 52
+42, 40, 12, 54, 27
+19, 5, 21, 30, 26
+real
+42, 12, 53, 40, 41
+real
+real
+42, 40, 54, 12, 26
+5, 21, 40, 19, 30
+52, 40, 54, 20, 42
+5, 49, 30, 19, 46
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+39, 46, 26, 2, 37
+real
+39, 46, 26, 50, 2
+39, 46, 26, 50, 2
+39, 26, 46, 54, 50
+39, 2, 50, 46, 25
+39, 46, 26, 50, 42
+real
+39, 46, 26, 50, 54
+real
+real
+real
+real
+real
+real
+39, 46, 26, 50, 2
+real
+26, 39, 38, 46, 31
+real
+48, 2, 47, 37, 25
+real
+real
+real
+42, 47, 27, 25, 24
+29, 37, 18, 8, 25
+25, 27, 54, 26, 29
+25, 47, 17, 28, 24
+27, 19, 21, 47, 26
+26, 54, 47, 25, 37
+26, 47, 46, 54, 48
+2, 26, 39, 47, 37
+37, 27, 47, 2, 24
+real
+real
+real
+real
+real
+27, 47, 37, 25, 48
+27, 47, 25, 2, 31
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+5, 49, 39, 46, 19
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+16, 50, 39, 5, 19
+real
+real
+real
+real
+39, 50, 2, 19, 46
+10, 50, 21, 39, 2
+real
+real
+real
+real
+real
+real
+real
+real
+15, 29, 8, 7, 51
+real
+29, 7, 8, 51, 54
+real
+7, 51, 29, 15, 48
+real
+real
+real
+real
+real
+15, 29, 13, 25, 51
+real
+real
+48, 8, 25, 51, 15
+real
+real
+real
+real
+8, 29, 7, 10, 50
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+19, 38, 5, 31, 39
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+29, 54, 8, 26, 7
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+29, 54, 26, 50, 8
+real
+real
+29, 54, 8, 2, 26
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+real
+4, 56, 54, 27, 34
+real
+real
+real
+32, 29, 7, 10, 55
+26, 13, 57, 7, 48
+real
+26, 48, 53, 29, 54
+29, 26, 7, 39, 37
+7, 54, 8, 26, 13
+real
+real
+2, 37, 48, 39, 25
+real
+real
+real
+29, 7, 57, 37, 13
+real
+37, 29, 18, 7, 15
+real
+55, 57, 13, 8, 7
+7, 26, 13, 57, 37
+real
+real

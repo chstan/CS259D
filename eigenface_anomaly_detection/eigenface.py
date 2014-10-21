@@ -156,4 +156,5 @@ if __name__ == "__main__":
     print "Calculating eigenvectors"
     #eig_vals, eig_vecs = scl.eigh(P, eigvals = (Pk - num_eigen, Pk - 1))
     eig_vals, eig_vecs = eigsh(P, num_eigen, which="LM")
+    print eig_vecs.shape;
     calculateNetworks(train_cooccurs[0], mean, np.transpose(eig_vecs))

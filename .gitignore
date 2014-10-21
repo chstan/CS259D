@@ -9,6 +9,3 @@
 
 # Compiled python files
 *.pyc
-
-# Output files
-*.txt
