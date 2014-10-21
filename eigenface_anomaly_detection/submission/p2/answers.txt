@@ -101,3 +101,8 @@ Addendum: Because we couldn't find a reasonably fast NIPALS implementation and
           of cycles in the graph intersection over the total cycles in either.
           This restores sim(A,B) = sim(B,A), but in practice didn't really
           change the results, so we stuck with the method in the paper.
+
+          Honestly, we were pretty surprised the reuslts were as good as they
+          were, given that we threw away the 656 least common commands, and in
+          reality these might be some of the most important for distinguishing
+          anomalous activity!
