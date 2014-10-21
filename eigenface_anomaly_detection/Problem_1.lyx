@@ -1,0 +1,205 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Brief Overview and Analysis of the 
+\begin_inset Newline newline
+\end_inset
+
+Storm Worm/Trojan.Peacomm Botnet
+\end_layout
+
+\begin_layout Author
+Conrad Stansbury + Dennis Wang
+\end_layout
+
+\begin_layout Itemize
+General stats: purpose, total network traffic
+\end_layout
+
+\begin_layout Itemize
+C&C
+\end_layout
+
+\begin_layout Itemize
+Replication at pseudocode level
+\end_layout
+
+\begin_layout Itemize
+Types of attacks launched.
+ What would you do to defend?
+\end_layout
+
+\begin_layout Itemize
+How would you preliminarily fix the OS or network protocol exploit that
+ made the botnet possible? (either replication or C&C)
+\end_layout
+
+\begin_layout Itemize
+How was the botnet mitigated or stopped?
+\end_layout
+
+\begin_layout Standard
+In early 2007 a new botnet appeared using largely defunct P2P protocol called
+ Overnet, which uses the Kademlia DHT, in order to communicate between bots
+ and to distribute commands.
+ Despite a number of agressive attacks made and a fair amount of visibility
+ in the security communities and in the public eye, Trojan.Peacomm grew to
+ a size of at least 
+\begin_inset Formula $600,000$
+\end_inset
+
+ computers by the end of the year, though C&C distribution and certain other
+ characteristics of the botnet probably mean that this is a fairly inaccurate
+ estimate, and other estimates range as high as 10,000,000 computers
+\begin_inset Formula $^{\left[1\right]}$
+\end_inset
+
+.
+ The network was reported in mainstream media as being traceable to Russian
+ organized crime, which is consistent with a possible later sale of parts
+ of the botnet, and use for distributed denial of service attacks.
+\end_layout
+
+\begin_layout Standard
+Interestingly, one of the functions of the network was to agressively defend
+ against the efforts of academic and commercial researchers, using its ability
+ to laucnh DDoS attacks in order to levy retribution against networks launching
+ probes, and to attack the networks of those who published papers on the
+ network.
+ 
+\end_layout
+
+\begin_layout Standard
+The decentralized nature of Trojan.Peacomm, effective social engineering
+ in order to conquer new hosts, frequent binary updates to avoid AV, as
+ well as its use of HTTP for file transfers, and strong enryption protocols
+ to protect the integrity of its traffic using dynamically generated keys
+ all mean that the botnet proved to be fairly resilient to attack
+\begin_inset Formula $^{\left[1,2\right]}$
+\end_inset
+
+.
+ However, by the end of 2007 the botnet was substantially decreased in size,
+ in part due to attacks which aimed to poison parts of the P2P network the
+ botnet used to communicate, and also potentially due to the dismantlement
+ and sale of large swaths of the botnet, with hosts changing botnet binaries
+ and communication, which can be deceptive because it paints a picture of
+ a sucessful response to a well designed and operated botnet for its day.
+\end_layout
+
+\begin_layout Section*
+References
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[1\right]$
+\end_inset
+
+ Sarat, Sandeep, and Andreas Terzis.
+ "Measuring the Storm Worm Network." 
+\emph on
+HiNRG Technical Report
+\emph default
+.
+ Online.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[2\right]$
+\end_inset
+
+ Porras, Philip et al.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+A Multi-perspective Analysis of the Storm (Peacomm) Worm
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+CSL Technical Note.
+ 
+\emph default
+Online.
+\end_layout
+
+\end_body
+\end_document
