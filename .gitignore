@@ -12,3 +12,6 @@
 
 # Lyx backup files
 *.lyx~
+
+# Output files
+*.txt
