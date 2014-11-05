@@ -1,0 +1,142 @@
+Answers to Problem 3: Touch Biometrics
+
+Please note there appears to be some inconsistency in their paper. They say that
+they have thirty features, but there are 31 if we include the change of finger
+orientation. However, this value is zero for all the data provided, so we have
+omitted it to obtain 30 features as desired.
+
+a) Implement two more features in addition to the 30 found in the database. Do
+they have positive information gain? That is, are the features useful?
+
+   The features that we implemented were mean finger pressure and finger
+   pressure variance over the course of the stroke. These features are
+   sensible because the mid-stroke pressure already showed high discriminating
+   power, but probably does not capture all of the useful information associated
+   with the finger pressure at each point along the stroke. The mean
+   finger pressure should be highly correlated with the mid-stroke pressure,
+   but we will see momentarily that it is less correlated than some of the other
+   suggested variables, while still providing high information gain. Similarly,
+   the variance in pressure should have some but lowish correlation with the
+   mid-stroke pressure, and probably with all of the rest of the variables,
+   and this was seen to be the case as in b). The idea of this feature is that
+   the variance in pressure over the stroke helps to encode how a user's hand
+   is moving or not moving as they make a stroke on the touchscreen, and in
+   particular whether or not they substantially bend the joints of the moving
+   finger. Users who bend this joint more will probably have more uniform
+   pressure throughout the stroke, as opposed to stiff fingered users who
+   might experience much higher pressure at the middle of the stroke, where
+   the arc of their finger would pass more fully through the plane of the screen
+   in phone's absence.
+
+   The information gain of the two implemented features as well as the top 10
+   features by information gain in the orginal set is reported here:
+
+   Mean Pressure:          0.1623
+   Variance Pressure:      0.0825
+
+   MidStrokePressure:      0.1737
+   MidStrokeAreaCovered:   0.1236
+   DirectionEndtoEnd:      0.0974
+   StartY:                 0.0735
+   AverageDirection:       0.0632
+   StopX:                  0.0630
+   StartX:                 0.0478
+   X50PairwiseVelocity:    0.0430
+   MidStrokeOrientation:   0.0423
+   StrokeDuration:         0.0394
+
+   If inserted individually into this list our features would rank second and
+   fourth respectively.
+
+b) Correlations for each feature with each other feature can be found in
+   cor.csv, which has correlations for all data that could be cleaned
+   sufficiently to calculate a correlation.
+
+   Included here though are the rows for our added variables:
+
+Labels:
+"","UserID","DocID","InterStrokeTime","StrokeDuration","StartX","StartY","StopX","StopY","DirectEndToEndDistance","MeanResultantLength","UDLRFlag","DirectionEndtoEnd","PhoneID","X20PairwiseVelocity","X50PairwiseVelocity","X80PairwiseVelocity","X20PairwiseAcceleration","X50PairwiseAcceleration","X80PairwiseAcceleration","MedianVelocityLastThree","LargestDeviationEndToEnd","X20DeviationEndToEnd","X50DeviationEndToEnd","X80DeviationEndToEnd","AverageDirection","LengthTrajectory","RatioEndToEndDistLength","AverageVelocity","MedianAccelerationFirstFive","MidStrokePressure","MidStrokeAreaCovered","MidStrokeOrientation","ChangeOfOrientation","PhoneOrientation","MeanPressure","VariancePressure"
+"MeanPressure",-0.187178461292434,0.095315649637504,0.00323477059683196,0.0816219908880513,-0.180822820943873,-0.0160773099098096,-0.150492366305341,0.0472364937717915,0.0681218138080394,-0.0135608775743159,-0.00195333952394041,0.02760993960722,-0.539246678477545,-0.0766396113999391,-0.106226008115448,-0.0872797043786489,0.0518043562648546,-0.0230261722767238,-0.0561228810001922,-0.0490466156882305,0.00702813964750689,-0.0375434141449403,-0.00706510798001826,0.0257616186484659,0.0156095489034587,0.081286409503758,-0.0895770208769737,-0.0572665887093106,-0.0197597353205018,0.970894749942404,0.00553775350438094,0.0604497600035581,NA,0.0828645415696106,1,0.729099463693247
+"VariancePressure",-0.177497128097087,0.321901996581959,0.00158940372729185,-0.231468041006228,-0.158837428658153,0.0738516327844375,-0.118690146553116,-0.0892803159318539,0.170989244765076,0.0778556558223494,-0.0150223149448115,-0.210232082593605,-0.452732797892154,0.114683591565529,0.13989176317518,0.077178892406937,-0.0166975093247497,0.00225780263361726,0.0481518871346612,0.174805238241717,0.0147909665950821,-0.029599200006502,0.00263769677522875,0.0358134139278514,-0.185288441002389,0.0988361073425107,0.106798606698923,0.230910940503002,0.00811396099517257,0.798699967301165,-0.0981192110764636,-0.0359742341339324,NA,-0.00936201356915073,0.729099463693247,1
+
+c) We used kNN with k learned to be the best f1 score over the k interval [1,10).
+   The problem was turned into a binary classification problem by computing
+   the best classifier for each of the users for each of the sets of tested
+   features. 10-fold stratified cross validation was used to train models and
+   build model statistics. kNN is a reasonable model choice because it robustly
+   handles low to medium dimensional data as we are using here, and it is
+   relatively fast to train. (This ended up being the issue with our available
+   computers given that the number of models to be trained is:
+      #feature sets
+    x #users
+    x #k-fold validation = 6 x 41 x 10 = 2400 kNN classifiers)
+
+
+   To compute a score for each classifier, we used the k that produced the best
+   mean f1 over the 10 cross-validated runs.
+
+   All rows containing inf/-inf/NaN/NA data was removed before training or
+   testing the data.
+
+   We trained classifiers for each of the sets:
+       Ten largest information gain features
+       Ten largest information gain features + our two
+       Papers top ten features
+       Papers top ten features + our two
+       All 30 from the paper
+       All 30 from the paper + our two
+
+   Data was preprocessed to have mean 0 and unit variance.
+
+   Because we train classifiers for each user, we have to construct overall
+   scores for the feature sets. We do this by taking the weighted mean of the
+   user f1, precision, and recall with the weights given by the number of
+   positive samples for each user. When we do this we obtain the following scores
+   Please note that because we are taking the weighted mean we do not need to
+   have one of precision or recall less than F1. This could be achieved by
+   using a different mean for instance (because F1 is the geometric mean of
+   precision and recall)
+
+                                        F1          Precision   Recall
+       Papers top ten                   0.524127    0.585647    0.544076
+       Papers top ten + 2               0.533792    0.601613    0.553366
+       Ten largest info gain            0.517228    0.581063    0.536755
+       Ten largest info gain + 2        0.524504    0.588885    0.547873
+       30                               ...
+       30 + 2
+
+       Unfortunatley, the training time is too long for all the users with the
+       all the features from the paper and our two. It was taking close to half
+       an hour per user. As a result we computed the scores for a subset of the
+       users and compared relative to our selected ten features. Please note
+       that on these users the top ten i.g. features were roughly 0.03 larger
+       in F1 score, so that all thirty features performed worse than any of the
+       above sets.
+
+                                        F1          Precision   Recall
+       30                               0.553952    0.650474    0.555263
+       30 + 2                           0.557719    0.750862    0.513157
+
+   For the patient or those with powerful computers:
+       F1, precision, recall data for every
+           (User, Feature Set, F1, Precision, Recall, F1 Optimal k)
+       is also available in results.txt by running the python script provided in the
+       above order (columns also labelled there).
+
+d) For the most part, there are a few good classes of distinguishing
+   information. Most broadly, they include the pressure and area,
+   some notion of velocity, some notion of the direction of the stroke,
+   and where the stroke both starts and stops. Getting additional information
+   over these handful of features mandates a careful balance between adding
+   useful information and polluting the model with additional variables
+   which can serve to reduce model accuracy. We saw this in our model above
+   where adding all 30 features actually performed worse for kNN than using the
+   10 best feautres or so according to a reasonable criterion. For this reason,
+   our features actually do a reasonable job of improving the F1 score, they
+   manage to improve it somewhat while adding an additional two dimensions to
+   the feature space. If we had been more careful and looked at the best subset
+   of ten features plus our two. Another possible scheme would be to look at all
+   the features and then do some dimensionality reduction scheme prior to
+   building the model. Unfortunately, in this scheme we lose the useful
+   direct connection to the original features, and this process may add some
+   additional cost making online analysis prohibitively expensive.
