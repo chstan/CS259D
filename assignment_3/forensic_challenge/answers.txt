@@ -1,0 +1,48 @@
+All analysis was done using Wireshark or grep (in very limited
+cases while dealing with how to install Wireshark).
+
+What is the neighbor’s name?
+     The neighbor's name is Ann Dercover, as is revealed by an SMTP name
+     attached to the from field on the first email.
+What is the neighbor’s email address?
+     The neighbor's email is sneakyg33k@aol.com. You can see this from the
+     SMTP authentication sequence or from any of the emails.
+What is the neighbor’s email password?
+     The neighbor's email password can be found by looking at the authentication
+     sequence with the SMTP server. In particular the sequence
+              AUTH LOGIN
+              334 VXNlcm5hbWU6
+              c25lYWt5ZzMza0Bhb2wuY29t
+              334 UGFzc3dvcmQ6
+              NTU4cjAwbHo=
+              235 AUTHENTICATION SUCCESSFUL
+     The odd numbered lines are from the client and the even numbered ones
+     the server. The first line communicates a desire for the client to log into
+     the server to receive mail. The third line is a base 64 encoding of the
+     email of the client, which has already been given.
+     Meanwhile the fifth line is the base 64 password. In ascii it is
+               "558r00lz".
+
+What are the email addresses (at least two) of the neighbor’s correspondents?
+     One email is sec558@gmail.com. In this email Ann Dercover states that
+     they are unable to hold their meeting because Ann is going out of town.
+
+     Another email is mistersecretx@aol.com, which is quite secret sounding...
+
+What is the email of the correspondent the neighbor is most likely have gone to visit?
+     On the basis that the email told "Mr. SecretX" to bring a bathing suit and
+     fake passport, this is the person that Ann Dercover is going to meet.
+     The email address is mistersecretx@aol.com.
+
+What is the name of the file containing the meeting location?
+     There is an attachment on the message to mistersecretx@aol.com called
+     secretrendezvous.docx. Sounds like the one.
+
+Bonus: where are they meeting and what is the correspondent bringing?
+     Included in this folder is their attachment. Inside the Word document is a
+     picture and instructions to "Meet me at the fountain near the rendezvous
+     point". Ann Dercover also reveals that she is "bringing all the cash."
+     The address is
+         1 Av. Constituyentes 1 Calle 10 x la 5ta
+         Avenida
+         Playa de Carmen, 77880, Mexico.
