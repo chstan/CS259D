@@ -10,3 +10,7 @@
 
 # Lyx backup files
 *.lyx~
+
+# Object files and binaries
+*.o
+*.out
