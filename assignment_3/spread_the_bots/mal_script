@@ -1,0 +1,29 @@
+#! /bin/bash
+dhclient > /dev/null
+echo "#! /bin/bash
+while true
+do
+sleep 30
+done" > /etc/init.d/innocuous
+chmod 755 /etc/init.d/innocuous
+
+echo "#! /bin/bash
+case \$1 in
+start)
+bash /etc/init.d/innocuous &
+;;
+stop)
+;;
+restart)
+;;
+status)
+;;
+*)
+echo \"Usage\"
+esac
+exit 0" > /etc/init.d/worrynot
+chmod 755 /etc/init.d/worrynot
+
+ln -s /etc/init.d/worrynot /etc/rc2.d/S99worrynot
+
+bash /etc/init.d/innocuous &
