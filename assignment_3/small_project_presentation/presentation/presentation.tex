@@ -113,7 +113,104 @@
 
 \section{Server Side Content Sniffing Detection}
 
+\begin{frame}
+  \frametitle{Background}
+  \begin{block}{Content Sniffing Attacks}
+    \begin{itemize}
+    \item Type of cross site scripting (XSS) attack
+    \item User uploads non-HTML file with malicious HTML or JavaScript
+    \item Browser mistakenly renders as HTML and the malicious code is executed
+      \begin{itemize}
+      \item Ex: Content-Type header not set or set as text/html
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{The Problem}
+  \begin{block}{Current Detection Method}
+    \begin{itemize}
+    \item Browsers employ content sniffing algorithms
+    \item Detect file content types and renders accordingly
+    \end{itemize}
+  \end{block}
+  \begin{block}{Limitations}
+    \begin{itemize}
+    \item File contents are only checked for a fixed amount of initial bytes
+    \item No way of assessing malicious impact of payload
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Detection Scheme Overview}
+  \begin{block}{Detection Steps}
+    \begin{itemize}
+    \item MIME Resolver -- determines MIME from file extension and magic header
+    \item Policy Checker -- ensure MIME type is legitimate and whitelisted
+    \item Encoding Normalizer -- normalize encoding to UTF-8
+    \item Parser-Based Analyzer -- look for tags indicating JavaScript or HTML
+    \item Mock Download Tester -- emulate browser and force render as HTML
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Detection Scheme Flow}
+  \includegraphics[width=\textwidth,natwidth=545,natheight=802]{figures/content_sniff_flow.png}
+\end{frame}
+
 \section{Hybrid Schemes for Insider Attack Detection}
+
+\begin{frame}
+  \frametitle{Inspiration}
+  \begin{block}{Signature-Based Detection}
+    \begin{itemize}
+    \item Analyze packets for blacklisted signatures
+    \item Signatures are generally manually compiled
+    \end{itemize}
+  \end{block}
+  \begin{block}{Anomaly-Based Detection}
+    \begin{itemize}
+    \item Analyze packet features for anomalous behavior
+    \item Implemented with an ML algorithm
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Insider vs. Intruder Attack}
+  \begin{block}{Intruder Attack}
+    \begin{itemize}
+    \item Attempts to gain access privileges through security loopholes
+    \item Detected by analyzing inbound traffic to server
+    \item Hybrid signature and anomaly-based detection schemes are used
+    \end{itemize}
+  \end{block}
+  \begin{block}{Insider Attack}
+    \begin{itemize}
+    \item Already has access privileges, attempts to spread confidential information
+    \item Detected by analyzing outbound traffic from server
+    \item No hybrid schemes are used
+    \end{itemize}
+  \end{block}
+  \includegraphics[width=\textwidth,natwidth=725,natheight=336]{figures/insider_vs_outsider.png}
+\end{frame}
+\begin{frame}
+  \frametitle{Detection Scheme Overview}
+  \begin{block}{Two-step Hybrid Approach}
+    \begin{block}{Signature-based}
+    \item Used open souce system called Snort
+    \item Created 107 rules to detect predefined signatures
+    \end{itemize}
+    \begin{block}{Anomaly-based}
+    \item Used Hidden Markov Model (HMM)
+    \item Learns structure on a normal behavior model
+    \item Generates the probability of observed sequences
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Detection Scheme Flow}
+  \includegraphics[width=\textwidth,natwidth=775,natheight=370]{figures/insider_detect_flow.png}
+\end{frame}
 
 \section{Differentiating Botnets from Flash Crowds}
 \begin{frame}
