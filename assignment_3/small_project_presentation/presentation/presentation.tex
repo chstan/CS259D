@@ -122,7 +122,7 @@
     \begin{itemize}
     \item Flagging malicious traffic on the basis of volume is
       insufficient
-    \item Legitimate traffic often spikes as a result of world events
+    \item Legitimate traffic often spikes
       \begin{itemize}
       \item World events
       \item Link aggregators and ``virality''
@@ -143,7 +143,7 @@
 
 \begin{frame}
   \frametitle{Differing Signatures Between Botnets and Flash Crowds}
-  \begin{block}{Key Observation}
+  \begin{block}{Key Observations}
     \begin{itemize}
     \item Studies indicate that attack tools/dispatch scripts are
       homogeneous inside a single botnet
@@ -210,7 +210,19 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Results: World Cup}
+  \frametitle{Results}
+  \begin{itemize}
+    \item Real traffic -- shows low flow correlation coefficient
+    \item Attack traffic -- generally much higher correlation
+      coefficient
+    \vspace{1cm}
+    \item Caveat: flows coming from different distributions of
+      requests show very low correlation coefficient
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Results: '98 World Cup}
   \includegraphics[width=0.9\textwidth,natwidth=1034,natheight=802]{figures/world_cup.png}
 \end{frame}
 
@@ -229,16 +241,50 @@
   \includegraphics[width=0.9\textwidth,natwidth=1016,natheight=796]{figures/aggregate_attack.png}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Method Conclusions}
+  \begin{block}{Strong Theoretical Guarantees}
+    \begin{itemize}
+      \item Subject to assumptions of uniform signature, get resilience
+        against delay + aggregation of flows
+      \item For the time being this seems to be a somewhat realistic
+        scenario
+    \end{itemize}
+  \end{block}
+  \begin{block}{Disadvantages and Anti-detection}
+    \begin{itemize}
+      \item Individual bots can randomly generate attack signatures
+      \item Large botnets don't satisfy uniformity requirements,
+        individual bots can start to more like individual agents
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 \section{Future Prospects and Challenges}
 
 \begin{frame}
   \frametitle{Where is the Field Headed?} % subject to change
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Where is the Competition Headed?} % subject to change
-
+  \begin{block}{Web Security Shows Promise...}
+    \begin{itemize}
+      \item Attacks are being addressed systematically by new methodologies
+      \item Progress being made on traditionally hard problems:
+        insider attacks
+      \item Hybrid approaches, which exist in the wild, are being
+        studied carefully
+        \begin{itemize}
+          \item Only so much of our computer resources can go to security
+          \item Understanding these systems helps to maximize
+            coverage subject to real world constraints
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+  \begin{block}{...But Initiative Still Lies with Attackers}
+    \begin{itemize}
+      \item Security efforts are reactionary
+      \item Hard to anticipate where attack efforts will lie, and only
+        finite resources to devote to these theoretical topics
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
