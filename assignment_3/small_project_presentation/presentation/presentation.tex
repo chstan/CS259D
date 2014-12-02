@@ -144,18 +144,21 @@
 \begin{frame}
   \frametitle{Detection Scheme Overview}
   \begin{block}{Detection Steps}
-    \begin{itemize}
+    \begin{enumerate}
     \item MIME Resolver -- determines MIME from file extension and magic header
     \item Policy Checker -- ensure MIME type is legitimate and whitelisted
     \item Encoding Normalizer -- normalize encoding to UTF-8
     \item Parser-Based Analyzer -- look for tags indicating JavaScript or HTML
     \item Mock Download Tester -- emulate browser and force render as HTML
-    \end{itemize}
+    \end{enumerate}
   \end{block}
 \end{frame}
 \begin{frame}
   \frametitle{Detection Scheme Flow}
-  \includegraphics[width=\textwidth,natwidth=545,natheight=802]{figures/content_sniff_flow.png}
+  \begin{center}
+    \vspace{-0.2cm}
+    \includegraphics[height=0.9\textheight,natwidth=545,natheight=802]{figures/content_sniff_flow.png}
+  \end{center}
 \end{frame}
 
 \section{Hybrid Schemes for Insider Attack Detection}
@@ -175,6 +178,12 @@
     \end{itemize}
   \end{block}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Insider vs. Intruder Attack}
+  \includegraphics[width=\textwidth,natwidth=725,natheight=336]{figures/insider_vs_outsider.png}
+\end{frame}
+
 \begin{frame}
   \frametitle{Insider vs. Intruder Attack}
   \begin{block}{Intruder Attack}
@@ -191,20 +200,24 @@
     \item No hybrid schemes are used
     \end{itemize}
   \end{block}
-  \includegraphics[width=\textwidth,natwidth=725,natheight=336]{figures/insider_vs_outsider.png}
 \end{frame}
+
 \begin{frame}
   \frametitle{Detection Scheme Overview}
   \begin{block}{Two-step Hybrid Approach}
     \begin{block}{Signature-based}
-    \item Used open souce system called Snort
-    \item Created 107 rules to detect predefined signatures
-    \end{itemize}
+      \begin{itemize}
+      \item Used open souce system called Snort
+      \item Created 107 rules to detect predefined signatures
+      \end{itemize}
+    \end{block}
     \begin{block}{Anomaly-based}
-    \item Used Hidden Markov Model (HMM)
-    \item Learns structure on a normal behavior model
-    \item Generates the probability of observed sequences
-    \end{itemize}
+      \begin{itemize}
+      \item Used Hidden Markov Model (HMM)
+      \item Learns structure on a normal behavior model
+      \item Generates the probability of observed sequences
+      \end{itemize}
+    \end{block}
   \end{block}
 \end{frame}
 \begin{frame}
