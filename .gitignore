@@ -14,3 +14,14 @@
 # Object files and binaries
 *.o
 *.out
+
+# TeX Stuff
+*.fls
+*.log
+*.nav
+*.toc
+*.snm
+*.aux
+*.fdb_latexmk
+## don't name any folders auto please, or they will get ignored
+**/auto/
