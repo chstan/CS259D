@@ -1,0 +1,97 @@
+1) Describe the relationship between an Intrusion Detection System
+(IDS) and an Intrusion Prevention System (IPS). Which one is more
+commonly used and why?
+
+IDS and IPS play complementary roles in network security, with the IPS
+handling most threats before they have the chance to take effect in a
+network. Unfortunately, no IPS is perfect, so IDSs exist to detect
+intrusions into a network so that effects can be mitigated after an
+attack has started. While IDSs are relatively common, IPSs are
+deployed on almost every substantial network.
+
+2) Explain why an attacker would use fast-flux and why the operator is
+hard to discover.
+
+An attacker using fast-flux can evade law enforcement and add
+resiliency to their attack by rapidly routing their attack through
+many infected hosts which they use as proxies. By rapidly changing the
+IP addresses associated with a particular domain used for an attack,
+it becomes difficult to trace attacks back to their
+source. Additionally, because so many different IPs are used, the only
+way to stop an operator using fast-flux is to take down their domain
+(if they use only one), which can be a fairly slow process.
+
+3) Using the characteristics of polymorphic shellcode, explain why
+multi-classifier systems (MCS) provide a good approach to
+payload-based anomaly detection?
+
+UNFINISHEd
+
+4) Why are the features chosen by McPAD a good fit for an ensemble
+model?
+
+UNFINISHED
+
+5) Give two reasons why the PAYL method for a payload-based anomaly
+detection cannot gain significantly from ensemble classification.
+
+UNFINISHED
+
+6) Using Baysian detection rate, explain why machine learning may not
+be a good detection mechanism for network intrusions?
+
+UNFINISHED
+
+7) Building on (6), explain why machine learning is good fit for
+forensics.
+
+UNFINISHED
+
+8) Explain why detecting polymorphic shellcode is essentially
+infeasible.
+
+The issue with detecting polymorphic shellcode is that modern
+polymorphic encoding engines are capable of more or less achieving
+encoded output indistinguishable from noise. Even if for a particular
+engine we are able to detect attacks, though for some engines like
+ADMmutate this might be incredibly hard, doing so takes much longer
+than it would otherwise because the effective "search space" for
+malicious scripts is so much larger (for instance when trying to
+identify a nop sled or other buffer overflow attack initiation). This
+of course means that the situation is made only worse by the
+proliferation of different polymorphism engines.
+
+9) Explain how robust statistics can tolerate adversarial boiling frog
+attacks.
+
+Robust statistics are not vulnerable to frog boiling because frog
+boiling attacks are predicated on the ability to adjust over time what
+is considered "standard" behavior by the victim system, for instance
+by adjusting the streaming mean or variance of some aggregate
+attribute of traffic over a router, which is not possible when the
+particular algorithm used to build these statistical variables is not
+vulnerable to drift due to adversarial attempts to modify them.
+
+10) Explain when a security company should “pull the bag off of the
+inspection conveyor” or when it should “make a copy of the bag instead
+of pulling it off and catch the intruder later”. (The analogy follows
+is derived from one of the lectures -- email me if you want an
+explanation)
+
+Being able to pull the bag off the conveyor or making a copy of it
+instead gives a security company the option to delay inspection of a
+payload for later. This can be beneficial if temporarily blocking the
+traffic would be highly disruptive to the network and there is only a
+small chance that the payload is actually dangerous. The payload can
+then be analyzed in parallel with the data actually being used,
+potentially subject to restrictions, for instance by sandboxing
+whatever application is using the data until analysis is complete or
+temporarily blocking typically unused ports out of the machine to stop
+the spread of an attack if it turns out to be malicious. At the same
+time, the ability to remove a known attack from the network traffic
+immediately is obviously helpful, because such a payload cannot be
+confused with potentially legitimate traffic.
+
+11) Why would attackers not care to change their IP address when
+attacking fake government website set up to draw the attacks,
+according to McAfee?
