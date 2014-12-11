@@ -1,0 +1,7 @@
+To run the detector, run the script block_the_bots with root privilege on the Ubuntu IDS machine.
+We take advantage of the fact that our virus requires "wget" to "conradstansbury.com", so detection is easy:
+we simply inspect packets for the string "conradstansbury.com".
+For prevention:
+We block, using iptables, the aforementioned packets.
+
+To make sure that this rule in the iptables persists, we place this rule in an init.d file.

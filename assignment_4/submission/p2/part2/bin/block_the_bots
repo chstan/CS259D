@@ -1,0 +1,25 @@
+#!/bin/bash
+
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+echo "#!/bin/bash
+case \$1 in
+start)
+iptables -A FORWARD -p tcp -m string --string \"conradstansbury.com\" --algo kmp -j REJECT
+;;
+stop)
+;;
+restart)
+;;
+status)
+;;
+*)
+echo \"Usage\"
+esac
+
+exit 0" > /etc/init.d/blockbots
+chmod 755 /etc/init.d/blockbots
+
+ln -s /etc/init.d/worrynot /etc/rc2.d/S99blockbots
+
+iptables -A FORWARD -p tcp -m string --string "conradstansbury.com" --algo kmp -j REJECT

@@ -1,0 +1,15 @@
+To extend homework 3, we implemented the following two specs:
+1. launch DDoS
+To do this, launch "python c_c.py" from your host machine to set up c&c. 
+Then execute mal_script with root privilege.
+From host machine, send message "DDOS frequency ip" (i.e. "DDOS 5 google.com").
+We set this up as a ping flooding attack, and the current code will only ping 4 times (for testing purposes).
+To actually DoS, comment out line 164 and uncomment line 163.
+
+2. remote shell
+Launch c_c.py and mal_script as before.
+From host machine, send message "SHELL command" (i.e. "SHELL ls").
+We set this up as a popen command and forward the output as a message back to the c&c.
+
+3. send spam (not functional)
+We attempted to set up a sendmail function but couldn't get the configurations for sendmail right :(.

