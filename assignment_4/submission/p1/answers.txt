@@ -34,12 +34,19 @@ statistical frequencies.
 4) Why are the features chosen by McPAD a good fit for an ensemble
 model?
 
-UNFINISHED
+The features for McPAD are the frequency of bytes that are a distance
+v apart. Since this is very easily adjustable, we can easily generate
+multiple different hypothesis classes, which are necessary for an
+ensemble model. Then, using the ensemble model, we can adjust the
+relative weighting of the different hypothesis classes.
 
 5) Give two reasons why the PAYL method for a payload-based anomaly
 detection cannot gain significantly from ensemble classification.
 
-UNFINISHED
+The features for the PAYL method are not conducive for generating
+multiple hypothesis calsses. The PAYL method already takes into account
+and weights different features like use length, character distribution,
+probabilistic grammar and tokens.
 
 6) Using Baysian detection rate, explain why machine learning may not
 be a good detection mechanism for network intrusions?
@@ -56,7 +63,10 @@ high.
 7) Building on (6), explain why machine learning is good fit for
 forensics.
 
-UNFINISHED
+For computer forensics, the prior probability of intrusion is very high (as
+opposed to the low probability associated with normal operation). Thus, the
+effect of the base rate fallacy is mitigated. P(detected|intrusion) does not 
+need to be as high to give a high P(intrusion|detected).
 
 8) Explain why detecting polymorphic shellcode is essentially
 infeasible.
