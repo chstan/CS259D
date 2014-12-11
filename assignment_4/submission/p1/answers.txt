@@ -25,7 +25,11 @@ way to stop an operator using fast-flux is to take down their domain
 multi-classifier systems (MCS) provide a good approach to
 payload-based anomaly detection?
 
-UNFINISHEd
+A polymorphic shellcode attack must observe regular traffic first
+and then mimic it statistically. This is easy to do when the IDS
+is a one-gram or two-gram PAYL. However, for a multi-classifier system,
+many models are used, so it is much harder to replicated the same
+statistical frequencies. 
 
 4) Why are the features chosen by McPAD a good fit for an ensemble
 model?
@@ -40,7 +44,14 @@ UNFINISHED
 6) Using Baysian detection rate, explain why machine learning may not
 be a good detection mechanism for network intrusions?
 
-UNFINISHED
+In general, it is difficult for ML to achieve a high detection rate 
+because it is better at detecting similarities than detecting outliers.
+Plus, this detection rate is simply P(detected|intrusion). Even if this
+is high, due to Bayesian detection rate and base rate fallacy, this may
+still not give much information because P(intrusion|detected) will still
+be low because the probability of intrusion is low. Typically, it is not
+possible for ML to achieve a high enough error rate to make P(intrusion|detected)
+high.
 
 7) Building on (6), explain why machine learning is good fit for
 forensics.
@@ -95,3 +106,10 @@ confused with potentially legitimate traffic.
 11) Why would attackers not care to change their IP address when
 attacking fake government website set up to draw the attacks,
 according to McAfee?
+
+Attackers do not care to change their IP addresses because they know
+that no effort is being made to correlate IP addresses from known attacks
+with IP addresses for future attacks. Part of this can be attributed
+to the fact that often times security intrusions are unreported and
+that there can be little to no communication between companies about
+these security discoveries.
