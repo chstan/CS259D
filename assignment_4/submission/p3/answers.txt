@@ -1,0 +1,38 @@
+Our Problem Proposal:
+
+    Our suggested problem is a possible extension of the
+    botnet/IDS assignment that has been on the last two problem
+    sets. We enjoyed this assignment as it allowed us to get a sense
+    of the complexities involved from the perspectives of both the
+    attackers the defenders.
+
+    We thought that it would be interesting to reformulate the
+    assignment somewhat to add interaction between the different
+    groups.
+
+    Groups would have one assignment period to write a preliminary
+    attack with a structure and purpose of their choice potentially
+    with the aid of some starter code to handle privilege escalation
+    etc. Simultaneously they would also build a primitive IDS that
+    would be capable of detecting and removing at least their attack
+    if detected on a system.
+
+    Evaluation of the assignment would be based on networking a series
+    of virtual machines together. Each machine runs one of the groups'
+    IDSs. Attacks are then distributed across the machines, either via
+    programs running on these VMs or by the TA's VM. Attacks would be
+    assessed on their functionality in performing some nefarious task
+    without detection, and the IDS's in their ability to detect and
+    mitigate the various attacks.
+
+    Followup assignments could include:
+             Forensics on the network logs/state of the system after the attacks,
+             with emphasis on separating out the attack types and vectors.
+
+             A followup allowing improvement of the attack and or detection system
+             on the basis of the forensics conducted.
+
+Other considerations:
+    Because this could be a somewhat involved assignment, it would
+    probably be helpful to have some amount of starter materials
+    akin to the ubuntu distribution we were giving for working on the IDS.
